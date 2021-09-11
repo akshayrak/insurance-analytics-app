@@ -44,12 +44,21 @@ const Result = ({searchResults}) => {
         console.log('Form Data', values)
     }
 
-    const validationSchema = Yup.object({
-        Policy_Id:Yup.string().required('Required'),
-        Customer_Id:Yup.string().email('Invalid email format').required('Required'),
-        Fuel:Yup.string().required('Required')
+    const validationSchema = Yup.object().shape({
+        Fuel:Yup.string().required('Required'),
+        Vehicle_Segment:Yup.string().required('Required'),
+        Premium:Yup.number().required('Required').max(7, 'Too Long!'),
+        Bodily_Injury_Liability:Yup.string().required('Required'),
+        Personal_Injury_Protection: Yup.string().required('Required'),
+        Property_Damage_Liability: Yup.string().required('Required'),
+        Collision: Yup.string().required('Required'),
+        Comprehensive: Yup.string().required('Required'),
+        Gender: Yup.string().required('Required'),
+        Income_Group: Yup.string().required('Required'),
+        Region: Yup.string().required('Required'),
+        Marital_Status: Yup.string().required('Required')
+        
     })
-
 
     return (
     
@@ -82,7 +91,7 @@ const Result = ({searchResults}) => {
                 </div>
                 <div className='form-control'>
                     <label htmlFor='Premium'>Premium</label>
-                    <Field type="text" value={premium} onChange={e=>setPremium(e.target.value)} id='Premium' name='Premium' />
+                    <Field type="number" value={premium} onChange={e=>setPremium(e.target.value)} id='Premium' name='Premium' max="1000000" />
                     <ErrorMessage name='Premium' />
                 </div>
                 <div className='form-control'>

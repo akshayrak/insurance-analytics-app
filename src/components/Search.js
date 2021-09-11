@@ -7,17 +7,18 @@ const Search = () => {
     let temp=''
     const searchPolicy = (e) =>{
         e.preventDefault()
-        if(temp!==searchQuery){
-            temp=searchQuery
+         if(temp!==searchQuery){
+             temp=searchQuery
             fetch('http://localhost:3004/data')
             .then(res=>{
                 return res.json()
             }).then(data=>{
                 setSearchResults(data)
             })
-        }
+         }else{
+             setSearchResults(searchResults)
+         }
     }
-   
     
     return (
         <>
